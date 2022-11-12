@@ -1,26 +1,34 @@
 <template>
   <div>
     <the-header></the-header>
-    <badge-list></badge-list>
+    <button @click="setSelectedComponent('active-goals')">Active Goals</button>
+    <button @click="setSelectedComponent('manage-goals')">ManageGoals Goals</button>
+    <!-- <active-goals v-if="selectedComponent === 'active-goals'"></active-goals>
+    <manage-goals v-if="selectedComponent === 'manage-goals'"></manage-goals> -->
+    <component :is="selectedComponent"></component>
+    <!-- <badge-list></badge-list>
     <user-info
       :full-name="activeUser.name"
       :info-text="activeUser.description"
       :role="activeUser.role"
-    ></user-info>
+    ></user-info> -->
   </div>
 </template>
 
 <script>
 
 import TheHeader from './components/TheHeader.vue';
-import BadgeList from './components/BadgeList.vue';
-import UserInfo from './components/UserInfo.vue';
+// import BadgeList from './components/BadgeList.vue';
+// import UserInfo from './components/UserInfo.vue';
+import ActiveGoals from './components/ActiveGoals.vue';
+import ManageGoals from './components/ManageGoals.vue';
 
 export default {
   components:{
   TheHeader,
-  BadgeList,
-  UserInfo
+  ActiveGoals,
+  ManageGoals
+  
   },
   data() {
     return {
@@ -29,8 +37,14 @@ export default {
         description: 'Site owner and admin',
         role: 'admin',
       },
+      selectedComponent:'active-goals',
     };
   },
+  methods:{
+    setSelectedComponent(cmp){
+      this.selectedComponent = cmp;
+    }
+  }
 };
 </script>
 

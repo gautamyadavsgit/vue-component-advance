@@ -1,1 +1,4 @@
 # vue-component-advance
+
+
+<component>
